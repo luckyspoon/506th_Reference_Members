@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>Dragooon:Mentions</id>
+	<name>@mention members</name>
+
+	<file name="$sourcedir/Subs-Post.php">
+
+		<operation>
+			<search position="after"><![CDATA[
+	// It's do or die time: forget any user aborts!]]></search>
+			<add><![CDATA[
+	mentions_process_post($msgOptions, $topicOptions, $posterOptions);
+]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[
+	// Success.]]></search>
+			<add><![CDATA[
+	if (!empty($msgOptions['mentions']))
+		mentions_process_store($msgOptions['mentions'], $msgOptions['id'], $msgOptions['subject'], $msgOptions['approved']);
+
+]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[	// Post count for the members?]]></search>
+			<add><![CDATA[
+	mentions_process_approved($msgs);
+]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[	// This is longer than it has to be, but makes it so we only set/change what we have to.]]></search>
+			<add><![CDATA[
+	mentions_process_post($msgOptions, $topicOptions, $posterOptions);
+	if (!empty($msgOptions['mentions']))
+		mentions_process_store($msgOptions['mentions'], $msgOptions['id'], $msgOptions['subject'], $msgOptions['approved']);
+]]></add>
+		</operation>
+
+	</file>
+
+	<file name="$sourcedir/Display.php">
+
+		<operation>
+			<search position="after"><![CDATA[	// What are you gonna display if these are empty?!]]></search>
+			<add><![CDATA[
+	mentions_post_scripts();
+]]></add>
+		</operation>
+
+	</file>
+
+	<file name="$sourcedir/Post.php">
+
+		<operation>
+			<search position="after"><![CDATA[	// You can't reply with a poll... hacker.]]></search>
+			<add><![CDATA[
+	mentions_post_scripts();
+]]></add>
+		</operation>
+
+	</file>
+
+
+	<file name="$sourcedir/Admin.php">
+
+		<operation>
+			<search position="after"><![CDATA[						// Mod Authors for a "ADD AFTER" on this line. Ensure you end your change with a comma. For example:]]></search>
+			<add><![CDATA[						'mentions' => array($txt['mentions']),
+]]></add>
+		</operation>
+
+	</file>
+
+	<file name="$sourcedir/ManageSettings.php">
+
+		<operation>
+			<search position="after"><![CDATA[		// Mod authors, once again, if you have a whole section to add do it AFTER this line, and keep a comma at the end.]]></search>
+			<add><![CDATA[		'mentions' => 'ModifyMentionsSettings',
+]]></add>
+		</operation>
+
+	</file>
+
+</modification>
