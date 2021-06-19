@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
-	<id>Dragooon:Mentions</id>
-	<name>@mention members</name>
+	<id>506th:ReferenceMembers</id>
+	<name>506th Reference Members</name>
 
 	<file name="$sourcedir/Subs-Post.php">
 
