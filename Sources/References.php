@@ -6,9 +6,12 @@ function references_bbc(array &$bbc_tags) {
 	$bbc_tags[] = array(
 		'tag' => 'referencemember',
 		'type' => 'unparsed_equals',
-		'before' => '<a href="' . $scripturl . '?action=profile;u=$1" class="reference">',
-		'after' => '</a>',
-	);
+		'content' => '<a href="' . $scripturl . '?action=profile;u=$1" class="reference">',
+        'after' => '</a>',
+        'validate' => create_function('&$tag, &$data, $disabled', '
+            $data = references_genName($data);
+        '),
+    );
 }
 
 function references_permissions(array &$permissionGroups, array &$permissionList, array &$leftPermissionGroups, array &$hiddenPermissions, array &$relabelPermissions) {
@@ -106,4 +109,18 @@ function references_post_scripts(){
 
 	$context['insert_after_template'] .= '
 		<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/references.js"></script>';
+}
+
+function references_genName($memberid){
+    global $smcFunc;
+    $request = $smcFunc['db_query']('', '
+        SELECT id_member, real_name
+        FROM {db_prefix}members
+        WHERE id_member = {int:member}',
+        array(
+            'member' => intval($memberid)
+        )
+    );
+    $row = $smcFunc['db_fetch_row']($request);
+    return $row[0];
 }

@@ -2,16 +2,14 @@
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>506th:ReferenceMembers</id>
-	<name>@mention members</name>
+	<name>506th Reference Members</name>
 
 	<file name="$languagedir/Modifications.english.php">
 
 		<operation>
 			<search position="end" />
 			<add><![CDATA[
-	$txt['mentions'] = 'Mentions';
-	$txt['scheduled_task_removeMentions'] = 'Remove seen mentions';
-	$txt['scheduled_task_desc_removeMentions'] = 'Automatically removes seen mentions older than the specified days';
+	$txt['references'] = 'References';
 	]]></add>
 		</operation>
 
@@ -22,9 +20,7 @@
 		<operation>
 			<search position="end" />
 			<add><![CDATA[
-	$txt['mentions'] = 'Mentions';
-	$txt['scheduled_task_removeMentions'] = 'Remove seen mentions';
-	$txt['scheduled_task_desc_removeMentions'] = 'Automatically removes seen mentions older than the specified days';
+	$txt['references'] = 'References';
 	]]></add>
 		</operation>
 
