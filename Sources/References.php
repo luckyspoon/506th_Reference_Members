@@ -5,12 +5,13 @@ function references_bbc(array &$bbc_tags) {
 
 	$bbc_tags[] = array(
 		'tag' => 'referencemember',
-		'type' => 'unparsed_equals',
-		'content' => '<a href="' . $scripturl . '?action=profile;u=$1" class="reference">',
-        'after' => '</a>',
+		'type' => 'unparsed_content',
+		'before' => '',
+        'after' => '',
+        'content' => "$1",
         'validate' => create_function('&$tag, &$data, $disabled', '
             $data = references_genName($data);
-        '),
+        ')
     );
 }
 
@@ -112,7 +113,7 @@ function references_post_scripts(){
 }
 
 function references_genName($memberid){
-    global $smcFunc;
+    global $smcFunc, $scripturl;
     $request = $smcFunc['db_query']('', '
         SELECT id_member, real_name
         FROM {db_prefix}members
@@ -122,5 +123,5 @@ function references_genName($memberid){
         )
     );
     $row = $smcFunc['db_fetch_row']($request);
-    return $row[0];
+    return '<a href="' . $scripturl . '?action=profile;u='.$row[0].'" class="reference">'.$row[1].'</a>';
 }

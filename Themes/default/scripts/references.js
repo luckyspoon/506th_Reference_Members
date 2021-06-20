@@ -44,10 +44,10 @@ var referenceInit = function(){
 	}
 };
 
-var atWhoElement = document.createElement('script');
-atWhoElement.src = atwho_url;
-atWhoElement.type = 'text/javascript';
-atWhoElement.onload = mentionInit;
+var atWhoElementReferences = document.createElement('script');
+atWhoElementReferences.src = atwho_url;
+atWhoElementReferences.type = 'text/javascript';
+atWhoElementReferences.onload = referenceInit;
 
 if (typeof $ == 'undefined' || (parseInt($.fn.jquery.substr(0, 1)) == 1 && parseInt($.fn.jquery.substr(2, 3)) < 8) || jQuery.fn.jquery != $.fn.jquery){
 	var scriptElement = document.createElement('script');
@@ -55,10 +55,10 @@ if (typeof $ == 'undefined' || (parseInt($.fn.jquery.substr(0, 1)) == 1 && parse
 	scriptElement.type = 'text/javascript';
 
 	scriptElement.onload = function () {
-		document.body.appendChild(atWhoElement);
+		document.body.appendChild(atWhoElementReferences);
 	};
 
 	document.body.appendChild(scriptElement);
 } else {
-	document.body.appendChild(atWhoElement);
+	document.body.appendChild(atWhoElementReferences);
 }
