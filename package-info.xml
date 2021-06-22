@@ -4,21 +4,19 @@
 	<name>506th Reference Members</name>
 	<id>506th:ReferenceMembers</id>
 	<type>modification</type>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 
 	<install for="2.0 - 2.0.99">
 		<database>install.php</database>
 		<modification>install.xml</modification>
-		<modification>install-english.xml</modification>
 		<require-dir name="Sources" destination="$boarddir" />
 		<require-dir name="Themes" destination="$boarddir" />
-		<redirect url="?action=admin;area=modsettings;sa=references" type="inline">Redirecting to the reference's settings page, also please remember to set the individual permissions for membergroups in order to allow references</redirect>
+		<redirect url="?action=admin" type="inline">Install completed.</redirect>
 	</install>
 
 	<uninstall for="2.0 - 2.0.99">
 		<code>uninstall.php</code>
 		<modification reverse="true">install.xml</modification>
-		<modification reverse="true">install-english.xml</modification>
 		<remove-file name="$sourcedir/References.php" />
 		<remove-file name="$themedir/languages/References.english.php" />
 		<remove-file name="$themedir/languages/References.english-utf8.php" />
