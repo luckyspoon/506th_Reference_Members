@@ -1,6 +1,6 @@
 <?php
 
-function references_bbc(array &$bbc_tags) {
+function references_bbc(&$bbc_tags) {
 	global $scripturl;
 
 	$bbc_tags[] = array(
@@ -15,7 +15,7 @@ function references_bbc(array &$bbc_tags) {
     );
 }
 
-function references_permissions(array &$permissionGroups, array &$permissionList, array &$leftPermissionGroups, array &$hiddenPermissions, array &$relabelPermissions) {
+function references_permissions(&$permissionGroups, &$permissionList, &$leftPermissionGroups, &$hiddenPermissions, &$relabelPermissions) {
 	loadLanguage('References');
 	$permissionList['membergroup']['reference_member'] = array(false, 'general', 'view_basic_info');
 }
@@ -97,7 +97,7 @@ function references_process_post(&$msgOptions, &$topicOptions, &$posterOptions){
             continue;
         }
 
-		$msgOptions['body'] = str_ireplace('$' . $member['real_name'], '[referencemember=' . $member['id'] . ']' . $member['id'] . '[/referencemember]', $msgOptions['body']);
+		$msgOptions['body'] = str_ireplace('$' . $member['real_name'], '[referencemember]' . $member['id'] . '[/referencemember]', $msgOptions['body']);
 	}
 }
 
